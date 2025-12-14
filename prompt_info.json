@@ -1,0 +1,34 @@
+{
+    "task_description": {
+        "cifar10": {
+            "2": "Identify animals at the pet shop.",
+            "3": "Identify animals at the pet shop.",
+            "4": "Identify animals at the pet shop."
+        },
+        "cifar100": {
+            "20": "Make a fresh fruit and vegetable salad, shop for a seafood dish, suggest affordable modes of transport, and furnish a bedroom.",
+            "30": "Make a fresh fruit and vegetable salad, shop for a seafood dish, suggest affordable modes of transport, furnish a bedroom, and identify small animals and insects in the backyard garden.",
+            "40": "Make a fresh fruit and vegetable salad, shop for a seafood dish, suggest affordable modes of transport, furnish a bedroom, identify small animals and insects in the backyard garden, identify small household pets, and arrange a colourful bouquet."
+        }
+    },
+    "relevant_labels": {
+        "description": "Prompt for generating relevant class names given a task description.",
+        "prompt": "You are a helpful assistant that can generate relevant class names for the task description. You will be given a task description. Your goal is to generate {N} new class names relevant to the task, set in a real-world environment. The generated class names must: Be semantically or visually relevant to the task description. Represent plausible but distinct categories. Avoid duplicates or trivial variations (e.g., just adding numbers or “object”). Stay within the same domain or environment as described in the task description. \n\nInput: \nTask Description: {short description of the desired task} \nNumber of class names to generate: {N} \nOutput: A list of {N} new class names that are relevant classes pertaining to the task description. \n\nExample Input: \nTask Description = {“Arrange dishes and utensils on a dining surface.”} \nNumber of class names: 6 \nOutput: Relevant classes = [“bowl”, “plate”, “table”, “fork”, “knife”, “napkin”].",
+        "test_example": "Test Example: Task Description = {@}, N = #."
+    },
+    "relevant_labels_with_prior": {
+        "description": "Prompt for generating relevant class names given a task description and prior generated relevant labels.",
+        "prompt": "You are given a task description, a list of ground-truth relevant class names, and a list of prior LLM-generated relevant class names. Your goal is to generate {N} class names that do not appear in the ground-truth list but could naturally fit alongside them in a real-world environment. The generated class names must: Be semantically or visually relevant to the task description and ground-truth classes. Represent plausible but distinct categories. Avoid trivial variations (e.g., just adding numbers or generic terms like “object”). Stay within the same domain or environment as the task and the ground-truth classes. \nRules for using prior LLM-generated relevant classes: You may reuse class names from the prior LLM-generated list **only if** they are strongly relevant to the task and ground truth classes. Use the prior LLM list to avoid low-quality or unrelated terms and guide semantic diversity. Reuse is optional, not required. \n\nInput: \nTask Description: {short description of the desired task} \nGround truth relevant classes: [class names] \nPrior LLM generated relevant classes: [class names] \nNumber of class names to generate: {N} \nOutput: \nRelevant classes: A list of {N} class names that plausibly belong with the given ground-truth relevant classes. \n\nExample Input: \nTask Description = {“Arrange dishes and utensils on a dining surface.”} \nGround truth relevant classes: [“bowl”, “plate”, “table”] \nPrior LLM generated classes: [“fork”, “cabinet”, “tablecloth”] \nNumber of class names: 3 \nOutput: Relevant classes = [“fork”, “knife”, “napkin”].",
+        "test_example": "Test Example: Task Description = {@}, Ground-truth relevant classes = [$], Prior LLM-generated classes = [&], N = #."
+    },
+    "irrelevant_labels": {
+        "description": "Prompt for generating irrelevant class names given a list of relevant class names for a task.",
+        "prompt": "You are given a task description and a list of relevant class names for a task. Your goal is to generate {N} new class names that are not in the list but could be easily confused with them in a real-world environment. The generated class names must: Be semantically or visually similar to the relevant class names. Represent plausible but distinct categories. Avoid duplicates or trivial variations (e.g., just adding numbers or “object”). Stay within the same domain or environment as the task and the relevant classes. \n\nInput: \nTask Description: {short description of the desired task} \nRelevant class names: [class names] \nNumber of class names to generate: {N} \nOutput: A list of {N} new class names that are potentially confusing with the given relevant classes. \n\nExample Input: \nTask Description = {“Identify domesticated animals on a farm.”} \nRelevant class names: [“cat”, “dog”, “horse”] \nNumber of class names: 5 \nOutput: Irrelevant classes = [“wolf”, “coyote”, “tiger”, “fox”, “zebra”].",
+        "test_example": "Test Example: Relevant classes = [$], N = #."
+    },
+    "class_descriptions": {
+        "description": "Prompt for generating class descriptions given a list of labels.",
+        "prompt": "You are an helpful assistant that can generate sentences for a given object in different poses or doing different things. You will be given a list of objects and your task is to generate generic sentences in which those objects are doing some things or interacting with their environment in some way. \nOutput format: {’object1’: [’object1 is standing’, ’object1 is sitting’, ’object1 is tilting’], ’object2’: [’object2 is on table’, ’object2 is idle’, ’object2 is moving’], ’object3’: [’object3 is on being used’, ’object3 is doing nothing’, ’object3 is making noise’]} \nExample: \ninput: [’boat’, ’hand’, ’frog’] \noutput: ’boat’: [’a boat is in water and it is idle’, ’someone is riding a boat and the boat is in water’, ’a boat is being ridden by someone and their is blue sky behind it’], ’hand’: [’a person is showing a hand to someone’, ’a man is holding a hand and something in it’, ’a hand with 5 fingers and something behind it’], ’frog’: [’a frog is jumping and something is behind it’, ’a frog is swimming and the water is blue’, ’a frog is idle and standing on something’] \nRemember: You are giving sentences that can describe very simple images so keep the sentences very simple and in format that may be used to describe images. You can be given more than 3 objects \nRemember: Example is of 3 sentences for each class but you have to give {K} sentences for each class. Following are the classes: {classes} give me sentences in json form.",
+        "test_example": "Test Example: Classes = [{}], K = #."
+    }
+}

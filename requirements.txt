@@ -1,0 +1,7 @@
+torch 
+torchvision 
+tqdm 
+numpy
+openai
+dotenv
+git+https://github.com/openai/CLIP.git
