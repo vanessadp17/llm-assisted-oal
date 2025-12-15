@@ -22,9 +22,9 @@
         "test_example": "Test Example: Task Description = {@}, Ground-truth relevant classes = [$], Prior LLM-generated classes = [&], N = #."
     },
     "irrelevant_labels": {
-        "description": "Prompt for generating irrelevant class names given a list of relevant class names for a task.",
+        "description": "Prompt for generating irrelevant class names given task description and a list of relevant class names for a task.",
         "prompt": "You are given a task description and a list of relevant class names for a task. Your goal is to generate {N} new class names that are not in the list but could be easily confused with them in a real-world environment. The generated class names must: Be semantically or visually similar to the relevant class names. Represent plausible but distinct categories. Avoid duplicates or trivial variations (e.g., just adding numbers or “object”). Stay within the same domain or environment as the task and the relevant classes. \n\nInput: \nTask Description: {short description of the desired task} \nRelevant class names: [class names] \nNumber of class names to generate: {N} \nOutput: A list of {N} new class names that are potentially confusing with the given relevant classes. \n\nExample Input: \nTask Description = {“Identify domesticated animals on a farm.”} \nRelevant class names: [“cat”, “dog”, “horse”] \nNumber of class names: 5 \nOutput: Irrelevant classes = [“wolf”, “coyote”, “tiger”, “fox”, “zebra”].",
-        "test_example": "Test Example: Relevant classes = [$], N = #."
+        "test_example": "Test Example: Task Description = {@}, Relevant classes = [$], N = #."
     },
     "class_descriptions": {
         "description": "Prompt for generating class descriptions given a list of labels.",
